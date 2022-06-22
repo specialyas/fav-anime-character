@@ -28,24 +28,16 @@ app.get('/',(request, response)=>{
     .catch(error => console.error(error))
 })
 
-app.post('/addCharacter', (request, response) => {
-    // db.collection('rappers').insertOne(request.body)
-    // .then(result => {
-    //     console.log('Rapper Added')
-    //     response.redirect('/')
-    // })
-    // .catch(error => console.error(error))
-})
 
-/// app.post('/addCharacter', (request, response) => {
-//     db.collection('characters').insertOne({animeName: request.body.animeName,
-//     characterName: request.body.characterName, likes: 0})
-//     .then(result => {
-//         console.log('Character Added')
-//         response.redirect('/')
-//     })
-//     .catch(error => console.error(error))
-// })
+/ app.post('/addCharacter', (request, response) => {
+    db.collection('characters').insertOne({animeName: request.body.animeName,
+    characterName: request.body.characterName, likes: 0})
+    .then(result => {
+        console.log('Character Added')
+        response.redirect('/')
+    })
+    .catch(error => console.error(error))
+})
 
 // app.get('/',(request, response)=>{
 //     db.collection('rappers').find().sort({likes: -1}).toArray()
