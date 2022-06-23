@@ -39,6 +39,34 @@ app.get('/',(request, response)=>{
     .catch(error => console.error(error))
 })
 
+app.put('/addOneLike', (request, response) => {
+    db.collection('characters').updateOne({animeName: request.body.animeName, characterName: request.body.characterName, likes: request.body.likesS},{
+        $set: {
+            likes:request.body.likesS + 1
+          }
+    },{
+        sort: {_id: -1},
+        upsert: true
+    })
+    .then(result => {
+        console.log('Added One Like')
+        response.json('Like Added')
+        console.log(request)
+    })
+    .catch(error => console.error(error))
+
+})
+
+app.delete('/deleteRapper', (request, response) => {
+    db.collection('rappers').deleteOne({stageName: request.body.stageNameS})
+    .then(result => {
+        console.log('Rapper Deleted')
+        response.json('Rapper Deleted')
+    })
+    .catch(error => console.error(error))
+
+})
+
 // app.get('/',(request, response)=>{
 //     db.collection('rappers').find().sort({likes: -1}).toArray()
 //     .then(data => {
